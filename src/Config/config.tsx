@@ -3,5 +3,5 @@ export default {
     developmentUsername: process.env.REACT_APP_USERNAME_DEV,
     developmentPassword: process.env.REACT_APP_PASSWORD_DEV,
     productionUri: "",
-    directDebitQueryPath: process.env.DIRECT_DEBIT_QUERY_PATH,
+    directDebitQueryPath: process.env.REACT_APP_DIRECT_DEBIT_QUERY_PATH,
 };

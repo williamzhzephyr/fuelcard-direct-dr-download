@@ -25,7 +25,7 @@ export interface PostObject {
 
 export interface PagedResult {
     "$type": string;
-    Items: GenericEntityData[];
+    Items: Generic;
     Offset: number;
     Limit: number;
     Count: number;
@@ -35,20 +35,21 @@ export interface PagedResult {
     NextOffset: number;
 };
 
-export interface GenericEntityData {
+export interface Generic {
     "$type": string;
-    Properties: {
-        "$type": string;
-        "$values": {
-            $type: string;
-            Name: string;
-            Value: string | {
-                "$type": string;
-                "$value": string | number
-            }  
-        }[];
-    };
-};
+    "$values": GenericEntityData[];
+}
+
+export interface GenericEntityData {
+    "$type": string,
+    EntityTypeName: string;
+    Properties: GenericPropertyDataCollection;
+}
+
+// export interface GenericEntityData {
+//     "$type": string;
+//     "$values": GenericPropertyData[];
+// };
 
 export interface GenericPropertyDataCollection {
     "$type": string;
@@ -57,8 +58,11 @@ export interface GenericPropertyDataCollection {
 
 export interface GenericPropertyData {
     "$type": string,
-    name: string;
-    value: object;
+    Name: string;
+    Value: string | {
+        "$type": string;
+        "$value": string | number;
+    }
 };
 
 export interface Value {

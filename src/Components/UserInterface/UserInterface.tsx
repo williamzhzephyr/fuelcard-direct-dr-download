@@ -1,6 +1,9 @@
 import { useState } from "react";
+import extractDataJson from "../Functions/extractDataJson";
+import downloadCSVFile from "../Functions/downloadCSVFile";
+import "./UserInterface.css"
 
-const userInterface: React.FC = (): JSX.Element => {
+const UserInterface: React.FC = (): JSX.Element => {
 
     const [inputDate, setInputDate] = useState<string>("");
     const [message, setMessage] = useState<string>("");
@@ -9,8 +12,32 @@ const userInterface: React.FC = (): JSX.Element => {
         setInputDate(e.target.value);
     };
 
+    const submit = async (e: React.FormEvent<HTMLFormElement>): Promise<boolean> => {
+        e.preventDefault();
+        setMessage("Processing data...");
+        try {
+            const result = await extractDataJson(inputDate, setMessage);
+
+            if (result === "Error") {
+                setMessage("Something went wrong, cannot download CSV file");
+                throw new Error("Something went wrong, cannot download CSV file");
+            }
+    
+            downloadCSVFile(result, setMessage);
+            return true;
+            
+        } catch (err: any) {
+            throw new Error("Unable to generate file, please contact the administrator");
+        }
+       
+    }
+
+    setTimeout(() => {
+        setMessage("");
+    }, 500);
+
     return <>
-        <form>
+        <form onSubmit={(e) => submit(e)}>
             <table>
                 <tbody>
                     <tr>
@@ -24,9 +51,10 @@ const userInterface: React.FC = (): JSX.Element => {
                     </tr>
                 </tbody>
             </table>
+            <button type="submit" className="TextButton">Export File</button>
+            <div style={{ marginTop: "10px" }}>{message}</div>
         </form>
-        <div>{message}</div>
     </>
 };
 
-export default userInterface;
+export default UserInterface;

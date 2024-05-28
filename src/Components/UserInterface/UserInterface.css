@@ -1,0 +1,32 @@
+tr {
+    text-align: left;
+    display: block;
+    margin-bottom: 20px;
+}
+
+label {
+    color: black;
+}
+
+tbody tr {
+    width: 100%;
+}
+
+.fuelcard th {
+    text-align: left;
+}
+
+
+label {
+    font-weight: 700
+}
+
+.formContainer {
+    display: flex;
+}
+
+.content {
+    width: 15%;
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}

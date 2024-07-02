@@ -34,10 +34,11 @@ const UserInterface: React.FC = (): JSX.Element => {
 
     setTimeout(() => {
         setMessage("");
-    }, 500);
+    }, 1000);
 
     return <>
         <form onSubmit={(e) => submit(e)}>
+        <label>Please select invoice date:</label>
             <table>
                 <tbody>
                     <tr>
@@ -54,6 +55,7 @@ const UserInterface: React.FC = (): JSX.Element => {
             <button type="submit" className="TextButton">Export File</button>
             <div style={{ marginTop: "10px" }}>{message}</div>
         </form>
+        <p>iPart Version: 1.1.0</p>
     </>
 };
 

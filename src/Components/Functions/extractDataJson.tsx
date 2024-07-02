@@ -101,7 +101,7 @@ const extractDataJson = async (inputDate: string, setMessage: (newValue: string)
             });
     
             const convertedString: string = "0000" + hashTag.toString();
-            csv += "3, " + value + "," + transactionCount + "," + convertedString.slice(-11);
+            csv += "3," + value + "," + transactionCount + "," + convertedString.slice(-11);
     
             setMessage("Finished processing data");
             return csv; 

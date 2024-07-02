@@ -4,11 +4,12 @@ import config from "../../Config/config";
 
 export const generateToken = async (): Promise<Token> => {
 
-    const username = config.developmentUsername;
-    const password = config.developmentPassword;
-    const devUrl = config.developmentUri;
+    //Since staff and dev have the same username and password, this logic is pointless
+    const username = process.env.REACT_APP_USERNAME_DEV ? process.env.REACT_APP_USERNAME_DEV : "";
+    const password = process.env.REACT_APP_PASSWORD_DEV ? process.env.REACT_APP_PASSWORD_DEV : "";
 
-    const url = `${devUrl}/token`;
+    const url = `${config.developmentUri}/token`;
+    console.log({url})
 
     if (!username || !password) {
         throw new Error("Username or password is not provided.");
